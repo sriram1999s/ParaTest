@@ -5,7 +5,9 @@ A multithreaded testing framework for cpp code, written in rust
 
 The tool takes a ```cpp``` file as its first argument. The file must specify all the test functions .
 
-The test functions must be of ```void``` return type, must not take any parameters and must be prefixed with a multiline comment ```/* test */```. A test function must cause a segmentation fault to be marked as a failure. Use of assert statements is advised.
+The test functions must be of ```void``` return type, must not take any parameters and must be prefixed with a multiline comment ```/* test */```. Functions which do not fit this template will be ignored and not considered as tests.
+
+A test function must cause a segmentation fault to be marked as a failure. Use of assert statements is advised.
 
 An example of a test specification file is shown below:
 
