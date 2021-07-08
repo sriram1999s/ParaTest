@@ -34,7 +34,6 @@ impl TestFunctions {
 
     // run all tests // without threading
     pub fn run_tests(&self, impl_file: &str) {
-        // self.display();
         self.list.iter().for_each(|func| {
             let mut main_file = String::from("#include \"tests.hpp\"\n");
             main_file.push_str(impl_file);
@@ -48,8 +47,6 @@ impl TestFunctions {
                 .arg("../cpp_files/tests.cpp")
                 .output()
                 .expect("failed to execute process");
-
-            println!("{:?}", output);
 
             println!("status: {}", output.status);
             println!("stdout: {}", String::from_utf8_lossy(&output.stdout));
