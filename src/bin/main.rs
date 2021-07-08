@@ -4,14 +4,24 @@ use std::fs;
 
 use para_test::TestFunctions;
 
+const DEBUG:bool = false;
+
 fn main() {
 
     // initializing store
     let mut store = TestFunctions::new();
+
     // reading the command line arguments
     let args: Vec<String> = env::args().collect();
     let test_filename = &args[1];
-    let test_file_contents = fs::read_to_string(test_filename).expect("Something went wrong reading the file");
+    let impl_filename = &args[2];
+    let test_file_contents = fs::read_to_string(test_filename).expect("Something went wrong reading the test specification file");
+    let impl_file_contents = fs::read_to_string(impl_filename).expect("Something went wrong reading the implementation file");
+
+    if DEBUG {
+        println!("test spec file :\n {}\n", test_file_contents);
+        println!("impl file :\n {}", impl_file_contents);
+    }
 
     // finding all test functions and storing
     let test_fn_pattern = Regex::new(r"/\* test \*/[\s]*.*?\{").unwrap();
@@ -21,5 +31,15 @@ fn main() {
         let func = func.get(1).unwrap().as_str();
         store.add(func);
     }
-    store.display();
+
+    if DEBUG {
+        store.display();
+    }
+
+    // creating a header file
+    store.create_header();
+
+    // running test
+    store.run_tests(impl_file_contents.as_str());
+
 }
