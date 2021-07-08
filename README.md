@@ -43,10 +43,14 @@ void test2() {
   std::cout << "test 2\n";  
 }
 ```
+### Name of Interface file
+
+The tool takes the name of a ```hpp``` file as its second argument.
+Make sure the file is in the same directory as the tests specification file.
 
 ### Implementation file
 
-The tool takes a ```cpp``` file as its second argument argument. The file holds your implementation.
+The tool takes a ```cpp``` file as its third argument argument. The file holds your implementation.
 
 An example of an implementation file is shown below:
 
