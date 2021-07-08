@@ -1,8 +1,16 @@
 # ParaTest
 A multithreaded testing framework for cpp code, written in rust
 
+- [setup](#Setup)
 - [input](#Input)
 - [usage](#Usage)
+
+## Setup
+
+Add the following to your shell config file.
+```sh
+export PARATEST_PATH="<path-to-directory>"
+```
 
 ## Input
 
