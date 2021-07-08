@@ -1,7 +1,12 @@
 # ParaTest
 A multithreaded testing framework for cpp code, written in rust
 
+- [input](#Input)
+- [usage](#Usage)
+
 ## Input
+
+### Test Specification File
 
 The tool takes a ```cpp``` file as its first argument. The file must specify all the test functions .
 
@@ -31,6 +36,31 @@ void test2() {
 }
 ```
 
-## Functionalities
+### Implementation file
 
- - yet to begin
+The tool takes a ```cpp``` file as its second argument argument. The file holds your implementation.
+
+An example of an implementation file is shown below:
+
+```cpp
+#include<iostream>
+
+int sum(int a, int b) {
+  return a + b;
+}
+
+int multiply(int a, int b) {
+  return a * b;
+}
+
+int mod(int a, int b) {
+  return a % b;
+}
+
+```
+
+## Usage
+
+```python
+print("Yet to complete :D")
+```
