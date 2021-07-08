@@ -3,6 +3,7 @@ use rayon::prelude::*;
 
 use std::fs;
 use std::process::Command;
+use std::env;
 
 pub struct TestFunctions {
     list: Vec<String>,
