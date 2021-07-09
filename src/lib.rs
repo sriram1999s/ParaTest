@@ -1,5 +1,7 @@
 // use rayon::prelude::*;
 
+use termion::color;
+
 use regex::Regex;
 
 use std::fs;
@@ -43,6 +45,7 @@ impl TestFunctions {
 
     // run all tests /* currently sequential */
     pub fn run_tests(&self, tests_path: &str, impl_file: &str) {
+        println!("Running tests...\n");
         self.list.iter().for_each(|func| {
 
             let path = TestFunctions::get_path().unwrap();
@@ -69,8 +72,8 @@ impl TestFunctions {
             let exec = Command::new("./a.out").output().expect("Error when running exec");
 
             match exec.status.success() {
-                true => println!("{} Passed : was completed successfully!\n", func ),
-                false => println!("{} Failed : {}", func, String::from_utf8_lossy(&exec.stderr)),
+                true => println!("{} {}Passed{} : was completed successfully!\n", func, color::Fg(color::LightGreen), color::Fg(color::Reset) ),
+                false => println!("{} {}Failed{} : {}", func, color::Fg(color::LightRed), color::Fg(color::Reset),String::from_utf8_lossy(&exec.stderr)),
             }
 
             let clean = Command::new("rm")

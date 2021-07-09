@@ -49,5 +49,6 @@ fn main() {
     store.create_header();
 
     // running test
+    println!("\n\n");
     store.run_tests(test_filename, impl_file_contents.as_str());
 }
