@@ -90,7 +90,7 @@ $ cargo run ../cpp_files/tests.cpp impl.hpp ../cpp_files/impl.cpp
 
 The output should be similar to:
 
-```sh
+```rust
 Running tests...
 
 test1 PASSED : was completed successfully!
