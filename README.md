@@ -73,6 +73,23 @@ int mod(int a, int b) {
 
 ## Usage
 
+
+Assuming you are in the ```src/``` directory.
+
+The path to the sample test specification file : ```../cpp_files/tests.cpp```
+
+The **name** of the interface file : ```impl.hpp```
+
+The path to the implementation file : ```../cpp_files/impl.cpp```
+
+To run the tester:
+
+```sh
+$ cargo run ../cpp_files/tests.cpp impl.hpp ../cpp_files/impl.cpp
+```
+
+The output should be similar to:
+
 ```python
 print("Yet to complete :D")
 ```
