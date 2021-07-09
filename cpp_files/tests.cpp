@@ -15,7 +15,7 @@ int helper()
 /* test */
 void test2()
 {
-  assert(6 == multiply(2, 3));
+  assert(7 == multiply(2, 3));
 }
 
 /* test */
