@@ -41,7 +41,7 @@ impl TestFunctions {
             .expect("Something went wrong when creating tests.hpp");
     }
 
-    // run all tests // without threading
+    // run all tests /* currently sequential */
     pub fn run_tests(&self, tests_path: &str, impl_file: &str) {
         self.list.iter().for_each(|func| {
 
@@ -62,17 +62,29 @@ impl TestFunctions {
                 .arg(main_path)
                 .arg(tests_path)
                 .output()
-                .expect("failed to execute process");
-
-            println!("status: {}", output.status);
-            println!("stdout: {}", String::from_utf8_lossy(&output.stdout));
-            println!("stderr: {}", String::from_utf8_lossy(&output.stderr));
+                .expect("failed to compile");
 
             assert!(output.status.success());
+
+            let exec = Command::new("./a.out").output().expect("Error when running exec");
+
+            match exec.status.success() {
+                true => println!("{} Passed : was completed successfully!\n", func ),
+                false => println!("{} Failed : {}", func, String::from_utf8_lossy(&exec.stderr)),
+            }
+
+            let clean = Command::new("rm")
+                .arg("a.out")
+                .output()
+                .expect("failed to remove binary");
+
+            assert!(clean.status.success());
+
         })
     }
 }
 
+// modifying tests specification file to add interface header if not present
 pub fn modify_test_spec_file(tests_file_path: &str, interface: &str) {
     let mut header = format!("#include \"{}\"\n", interface);
     let pat = Regex::new(header.as_str()).unwrap();
