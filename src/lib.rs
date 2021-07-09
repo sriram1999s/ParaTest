@@ -45,6 +45,9 @@ impl TestFunctions {
 
     // run all tests /* currently sequential */
     pub fn run_tests(&self, tests_path: &str, impl_file: &str) {
+        let mut no_passed_tests = 0;
+        let mut no_failed_tests = 0;
+        let mut no_run_tests = 0;
         println!("Running tests...\n");
         self.list.iter().for_each(|func| {
 
@@ -72,8 +75,8 @@ impl TestFunctions {
             let exec = Command::new("./a.out").output().expect("Error when running exec");
 
             match exec.status.success() {
-                true => println!("{} {}Passed{} : was completed successfully!\n", func, color::Fg(color::LightGreen), color::Fg(color::Reset) ),
-                false => println!("{} {}Failed{} : {}", func, color::Fg(color::LightRed), color::Fg(color::Reset),String::from_utf8_lossy(&exec.stderr)),
+                true => { println!("{} {}PASSED{} : was completed successfully!\n", func, color::Fg(color::LightGreen), color::Fg(color::Reset)); no_passed_tests += 1; no_run_tests += 1;},
+                false => { println!("{} {}FAILED{} : {}", func, color::Fg(color::LightRed), color::Fg(color::Reset),String::from_utf8_lossy(&exec.stderr)); no_failed_tests += 1; no_run_tests += 1;},
             }
 
             let clean = Command::new("rm")
@@ -83,7 +86,8 @@ impl TestFunctions {
 
             assert!(clean.status.success());
 
-        })
+        });
+        println!("Summary:\n\nTotal no of tests run : {}, total {}PASSED{} : {}, total {}FAILED{} : {}", no_run_tests, color::Fg(color::LightGreen), color::Fg(color::Reset), no_passed_tests, color::Fg(color::LightRed), color::Fg(color::Reset), no_failed_tests);
     }
 }
 
