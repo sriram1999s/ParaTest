@@ -90,6 +90,17 @@ $ cargo run ../cpp_files/tests.cpp impl.hpp ../cpp_files/impl.cpp
 
 The output should be similar to:
 
-```python
-print("Yet to complete :D")
+```sh
+Running tests...
+
+test1 PASSED : was completed successfully!
+
+test2 FAILED : a.out: ../cpp_files/tests.cpp:18: void test2(): Assertion `7 == multiply(2, 3)' failed.
+
+test3 PASSED : was completed successfully!
+
+Summary:
+
+Total no of tests run : 3, total PASSED : 2, total FAILED : 1
+
 ```
